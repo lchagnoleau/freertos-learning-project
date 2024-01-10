@@ -28,6 +28,7 @@ option(WITH_DOC "Enable Documentation generation" OFF)
 set(SOURCES_FILES
   ${CMAKE_SOURCE_DIR}/src/main.cpp
   ${CMAKE_SOURCE_DIR}/src/freertos/tasks/blinky/blinky_task.cpp
+  ${CMAKE_SOURCE_DIR}/src/drivers/led/led.cpp
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/syscalls.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/stm32f1xx_it.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/system_stm32f1xx.c
@@ -55,6 +56,7 @@ set(INCLUDES_DIR
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/CMSIS/Include
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/CMSIS/Device/ST/STM32F1xx/Include
   ${CMAKE_SOURCE_DIR}/src/freertos/tasks/blinky/
+  ${CMAKE_SOURCE_DIR}/src/drivers/led/
 )
 
 set(SYMBOLES

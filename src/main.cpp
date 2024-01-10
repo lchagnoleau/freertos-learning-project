@@ -68,23 +68,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   }
 }
 
-void initGPIO() {
-  GPIO_InitTypeDef GPIO_Config;
-
-  GPIO_Config.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_Config.Pull = GPIO_NOPULL;
-  GPIO_Config.Speed = GPIO_SPEED_FREQ_HIGH;
-
-  GPIO_Config.Pin = GPIO_PIN_5;
-
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  HAL_GPIO_Init(GPIOA, &GPIO_Config);
-}
-
 int main(void) {
   HAL_Init();
   SystemClock_Config();
-  initGPIO();
 
   xTaskCreate(blinky, "", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
   vTaskStartScheduler();
