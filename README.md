@@ -36,7 +36,6 @@ I choose the following folder structure for this project:
         - `Source/`: Contains the FreeRTOS source files.
     - `drivers/`: Contains the driver implementation files.
         - `led/`: Contains the Led driver implementation files.
-        - `uart/`: Contains the UART driver implementation files.
     - `stm32f103rb/`: Contains the STM32F103RB specific code.
         - `peripherals/`: Contains the peripheral driver implementation files.
             - `CMSIS/`: Contains the CMSIS driver implementation files.
