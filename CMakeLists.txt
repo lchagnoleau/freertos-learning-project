@@ -30,6 +30,8 @@ set(SOURCES_FILES
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/syscalls.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/stm32f1xx_it.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/system_stm32f1xx.c
+  ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/stm32f1xx_hal_msp.c
+  ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/stm32f1xx_hal_timebase_tim.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c
@@ -73,7 +75,6 @@ set(EXECUTABLE ${CMAKE_PROJECT_NAME})
 
 set(FREERTOS_CONFIG_FILE_DIRECTORY ${CMAKE_SOURCE_DIR}/src/freertos/FreeRTOSConfig CACHE STRING "")
 set(FREERTOS_PORT GCC_ARM_CM3 CACHE STRING "")
-set(FFREERTOS_HEAP 3 CACHE STRING "")
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/freertos/Source)
 
 add_executable(${EXECUTABLE} ${SOURCES_FILES})

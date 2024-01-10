@@ -58,6 +58,13 @@ void SystemClock_Config(void) {
   }
 }
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  if (htim->Instance == TIM1) {
+    HAL_IncTick();
+  }
+}
+
 void initGPIO() {
   GPIO_InitTypeDef GPIO_Config;
 
