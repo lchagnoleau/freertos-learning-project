@@ -47,7 +47,15 @@ I choose the following folder structure for this project:
 
 This folder structure provides a clear separation of concerns and allows for easy navigation and maintenance of the project files.
 
-## 3. ToDo list 📝
+## 3. Getting Started 🏁
+
+```bash
+cmake --preset=Debug
+cmake --build build/Debug
+st-flash write build/Debug/freertos-learning.bin 0x8000000
+```
+
+## 4. ToDo list 📝
 
 - [x] Write a simple blinky application whitout FreeRTOS.
 - [x] Integrate FreeRTOS.
