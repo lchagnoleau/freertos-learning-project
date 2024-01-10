@@ -31,6 +31,12 @@ I choose the following folder structure for this project:
 - `src/`: Contains the source code files for the project.
     - `main.cpp`: The main entry point of the application.
     - `freertos/`: Contains the FreeRTOS code.
+        - `FreeRTOSConfig`: The FreeRTOS configuration file.
+        - `tasks/`: Contains the FreeRTOS task implementation files.
+        - `Source/`: Contains the FreeRTOS source files.
+    - `drivers/`: Contains the driver implementation files.
+        - `led/`: Contains the Led driver implementation files.
+        - `uart/`: Contains the UART driver implementation files.
     - `stm32f103rb/`: Contains the STM32F103RB specific code.
         - `peripherals/`: Contains the peripheral driver implementation files.
             - `CMSIS/`: Contains the CMSIS driver implementation files.
@@ -47,5 +53,4 @@ This folder structure provides a clear separation of concerns and allows for eas
 - [x] Write a simple blinky application whitout FreeRTOS.
 - [x] Integrate FreeRTOS.
 - [x] Create a task for the blinky application.
-- [ ] Create a driver for a specific peripheral like Led and UART.
-- [ ] Create a task for the UART driver.
+- [x] Create a driver for a specific peripheral like Led.
