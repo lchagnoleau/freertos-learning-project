@@ -27,8 +27,12 @@ option(WITH_DOC "Enable Documentation generation" OFF)
 # Compilation #################################################################
 set(SOURCES_FILES
   ${CMAKE_SOURCE_DIR}/src/main.cpp
+  ${CMAKE_SOURCE_DIR}/src/freertos/tasks/blinky/blinky_task.cpp
+  ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/syscalls.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/stm32f1xx_it.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/system_stm32f1xx.c
+  ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/stm32f1xx_hal_msp.c
+  ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/stm32f1xx_hal_timebase_tim.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c
@@ -50,6 +54,7 @@ set(INCLUDES_DIR
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/STM32F1xx_HAL_Driver/Inc
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/CMSIS/Include
   ${CMAKE_SOURCE_DIR}/src/stm32f103rb/peripherals/CMSIS/Device/ST/STM32F1xx/Include
+  ${CMAKE_SOURCE_DIR}/src/freertos/tasks/blinky/
 )
 
 set(SYMBOLES
@@ -63,12 +68,21 @@ set(CPU_PARAMETERS
   -mfloat-abi=soft
 )
 
+add_compile_options(
+  ${CPU_PARAMETERS}
+)
+
 set(linker_script_SRC ${CMAKE_SOURCE_DIR}/STM32F103XB_FLASH.ld)
 set(EXECUTABLE ${CMAKE_PROJECT_NAME})
+
+set(FREERTOS_CONFIG_FILE_DIRECTORY ${CMAKE_SOURCE_DIR}/src/freertos/FreeRTOSConfig CACHE STRING "")
+set(FREERTOS_PORT GCC_ARM_CM3 CACHE STRING "")
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/freertos/Source)
 
 add_executable(${EXECUTABLE} ${SOURCES_FILES})
 target_include_directories(${EXECUTABLE} PRIVATE ${INCLUDES_DIR})
 target_compile_definitions(${EXECUTABLE} PRIVATE ${SYMBOLES})
+target_link_libraries(${EXECUTABLE} PRIVATE freertos_kernel)
 
 target_compile_options(${EXECUTABLE} PRIVATE
   ${CPU_PARAMETERS}

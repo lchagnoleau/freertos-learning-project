@@ -30,10 +30,7 @@ I choose the following folder structure for this project:
     - `FindClangFormat.cmake`: Contains the ClangFormat configuration files.
 - `src/`: Contains the source code files for the project.
     - `main.cpp`: The main entry point of the application.
-    - `freertos/`: Contains the FreeRTOS specific code.
-        - `tasks/`: Contains the task implementation files.
-        - `drivers/`: Contains the driver implementation files.
-        - `utils/`: Contains utility functions and helpers.
+    - `freertos/`: Contains the FreeRTOS code.
     - `stm32f103rb/`: Contains the STM32F103RB specific code.
         - `peripherals/`: Contains the peripheral driver implementation files.
             - `CMSIS/`: Contains the CMSIS driver implementation files.
@@ -48,7 +45,7 @@ This folder structure provides a clear separation of concerns and allows for eas
 ## 3. ToDo list 📝
 
 - [x] Write a simple blinky application whitout FreeRTOS.
-- [ ] Integrate FreeRTOS.
-- [ ] Create a task for the blinky application.
-- [ ] Create a driver for a specific peripheral like UART.
+- [x] Integrate FreeRTOS.
+- [x] Create a task for the blinky application.
+- [ ] Create a driver for a specific peripheral like Led and UART.
 - [ ] Create a task for the UART driver.
