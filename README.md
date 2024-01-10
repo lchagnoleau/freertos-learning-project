@@ -45,7 +45,7 @@ This folder structure provides a clear separation of concerns and allows for eas
 ## 3. ToDo list 📝
 
 - [x] Write a simple blinky application whitout FreeRTOS.
-- [ ] Integrate FreeRTOS.
-- [ ] Create a task for the blinky application.
-- [ ] Create a driver for a specific peripheral like UART.
+- [x] Integrate FreeRTOS.
+- [x] Create a task for the blinky application.
+- [ ] Create a driver for a specific peripheral like Led and UART.
 - [ ] Create a task for the UART driver.

@@ -5,6 +5,9 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
+/* Application includes. */
+#include "blinky_task.hpp"
+
 /**
  * @brief  System Clock Configuration
  *         The system Clock is configured as follow :
@@ -76,14 +79,6 @@ void initGPIO() {
 
   __HAL_RCC_GPIOA_CLK_ENABLE();
   HAL_GPIO_Init(GPIOA, &GPIO_Config);
-}
-
-static void blinky(void *pvParameters) {
-  while (1) {
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    /* Insert delay 100 ms */
-    vTaskDelay(1000/portTICK_PERIOD_MS);
-  }
 }
 
 int main(void) {
