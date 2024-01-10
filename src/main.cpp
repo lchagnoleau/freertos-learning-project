@@ -1,4 +1,9 @@
+/* HAL includes. */
 #include "stm32f1xx_hal.h"
+
+/* Scheduler includes. */
+#include "FreeRTOS.h"
+#include "task.h"
 
 /**
  * @brief  System Clock Configuration
@@ -15,8 +20,8 @@
  * @retval None
  */
 void SystemClock_Config(void) {
-  RCC_ClkInitTypeDef clkinitstruct = {0};
-  RCC_OscInitTypeDef oscinitstruct = {0};
+  RCC_ClkInitTypeDef clkinitstruct;
+  RCC_OscInitTypeDef oscinitstruct;
 
   /* Configure PLL ------------------------------------------------------*/
   /* PLL configuration: PLLCLK = (HSI / 2) * PLLMUL = (8 / 2) * 16 = 64 MHz */
@@ -66,16 +71,23 @@ void initGPIO() {
   HAL_GPIO_Init(GPIOA, &GPIO_Config);
 }
 
+static void blinky(void *pvParameters) {
+  while (1) {
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+    /* Insert delay 100 ms */
+    vTaskDelay(1000/portTICK_PERIOD_MS);
+  }
+}
+
 int main(void) {
   HAL_Init();
   SystemClock_Config();
   initGPIO();
 
-  while (1) {
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    /* Insert delay 100 ms */
-    HAL_Delay(100);
-  }
+  xTaskCreate(blinky, "", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+  vTaskStartScheduler();
+
+  while (1) {}
 
   return 0;
 }
